@@ -1,4 +1,4 @@
-import { initMongoose } from "@/lib";
+/* import { initMongoose } from "@/lib";
 import Prod from "@/models/productSchema";
 
 
@@ -18,4 +18,4 @@ export async function GET(request,res){
     }
 
 
-} 
+}  */

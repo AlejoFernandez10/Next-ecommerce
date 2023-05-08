@@ -25,7 +25,13 @@ export default async function Home() {
 
       <DiscoverMore  data={dataParsed}/>
 
-      
+      <div className="px-5 w-full">
+
+        <StartExploring  />
+
+      </div>
+
+      <NewsLetter />
     </main>
   )
 }

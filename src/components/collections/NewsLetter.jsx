@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import newsLetterImg from '../../../public/newsLetter.webp'
+import newsLetterImg from '../../../public/newsletter.webp'
 import {AiOutlineArrowRight} from 'react-icons/ai'
 
 const NewsLetter = () => {
