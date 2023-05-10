@@ -12,14 +12,35 @@ const Filters = ({data}) => {
 
  const categories = {
   title:'Categories',
-  cat1:''
+  subcategories:[
+    {name:'All Categories'},
+    {name:'Bags'},
+    {name:'Jackets'},
+    {name:'Shorts'},
+    {name:'Shoes'}
+  ]
  }
  const color = {
-  title:'Colors'
+  title:'Colors',
+  colors:[
+    {name:'All Colors'},
+    {name:'Black'},
+    {name:'Green'},
+    {name:'Blue'}
+  
+  ]
  }
 
  const sizes={
-  title:'Sizes'
+  title:'Sizes',
+  sizes:[
+    {name:'All Sizes'},
+    {name:'Xs'},
+    {name:'S'},
+    {name:'L'},
+    {name:'M'},
+    {name:'Xl'}
+  ]
  }
 
   return (
@@ -30,18 +51,18 @@ const Filters = ({data}) => {
 
       <div className='flex gap-5'>
 
-       <div className='relative flex items-center '>
+       <div className='relative flex items-center text-gray-500'>
 
           <BiCategoryAlt className='absolute z-30 left-2 ' />
-          <Dropdown title={categories.title}  />
+          <Dropdown title={categories.title} categories={categories.subcategories} />
 
        </div>
 
 
        <div className='relative flex items-center '>
 
-          <BiColorFill className='absolute z-30 left-2 ' />
-          <Dropdown title={color.title}  />
+          <BiColorFill className='absolute z-30 left-2 text-gray-500' />
+          <Dropdown title={color.title} categories={color.colors} />
 
         </div>
 
@@ -49,8 +70,8 @@ const Filters = ({data}) => {
 
         <div className='relative flex items-center '>
 
-          <IoIosResize className='absolute z-30 left-2 ' />
-          <Dropdown title={sizes.title}  />
+          <IoIosResize className='absolute z-30 left-2 text-gray-500' />
+          <Dropdown title={sizes.title} categories={sizes.sizes} />
 
         </div>
 

@@ -4,7 +4,6 @@ import React from 'react'
 const DisplayProducts = ({data}) => {
 
 
-  console.log(data)
 
   return (
     <div className='w-full flex flex-col  items-center '>      

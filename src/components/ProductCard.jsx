@@ -14,6 +14,8 @@ const ProductCard = ({img, price, name, desc, reviews, stars, category}) => {
 
   const [color, setColor] = useState('')
 
+  const [activeSize, setActiveSize] = useState('')
+
   const talles = [
     'Xs',
     'S',
@@ -33,16 +35,16 @@ const ProductCard = ({img, price, name, desc, reviews, stars, category}) => {
 
           <div>
 
-          <Image width={400} height={400} alt={desc} src={img} className='h-auto m-auto min-h-[319px] max-h-[320px] object-cover z-10' />
+          <Image width={400} height={400} alt={desc} src={img} className='h-auto m-auto min-h-[319px] max-h-[320px] object-cover z-10 scale-100 transition-all duration-200 hover:scale-110' />
           </div>
           
           <div className='talles absolute bottom-5  gap-2 justify-center w-[250px] right-5 items-center z-0 ' >
 
             {talles.map((talle)=>(
 
-              <div key={talle} className='h-[40px] w-[80px] bg-gray-50 shadow-lg rounded-xl flex items-center justify-center transition-all duration-200  hover:bg-gray-900 hover:text-white'>
+              <button key={talle} onClick={((e )=> e.preventDefault()  & setActiveSize(talle))} className={`h-[40px] w-[80px]  shadow-lg rounded-xl flex items-center justify-center transition-all duration-200  hover:bg-gray-900 hover:text-white ${activeSize === talle ? 'bg-black text-white' : 'bg-white text-black'}`}>
                   <p className='text-base font-semibold '>{talle}</p>
-              </div>
+              </button>
 
             ))}
           </div>
@@ -62,10 +64,6 @@ const ProductCard = ({img, price, name, desc, reviews, stars, category}) => {
 
          <div className={`relative w-6 h-6 rounded-full overflow-hidden z-10 border cursor-pointer ${color === 'green' && 'border-green-500' } `} onClick={()=> setColor('green')}>
           <div className='absolute inset-0.5 rounded-full z-0 bg-green-400'></div>
-         </div>
-
-         <div className={`relative w-6 h-6 rounded-full overflow-hidden z-10 border cursor-pointer ${color === 'yellow' && 'border-yellow-500'} `} onClick={()=> setColor('yellow')}>
-          <div className='absolute inset-0.5 rounded-full z-0 bg-yellow-400'></div>
          </div>
 
          <div className={`relative w-6 h-6 rounded-full overflow-hidden z-10 border cursor-pointer ${color === 'blue' && 'border-blue-500'} `} onClick={()=> setColor('blue')}>

@@ -7,7 +7,10 @@ const nextConfig = {
   images:{
     domains:[
       'ciseco-nextjs.vercel.app',
-      'preview.themeforest.net'
+      'preview.themeforest.net',
+      'photos.google.com',
+      'lh3.googleusercontent.com'
+      
     ]
   }
 }
