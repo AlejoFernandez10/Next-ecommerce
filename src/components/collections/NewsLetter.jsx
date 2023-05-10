@@ -5,13 +5,13 @@ import {AiOutlineArrowRight} from 'react-icons/ai'
 
 const NewsLetter = () => {
   return (
-    <section className='min-h-[50vh] bg-white w-full flex justify-center mt-28 pb-20'>
+    <section className='min-h-[50vh] bg-white w-full flex  justify-center mt-28 pb-20'>
 
-      <div className='newsLetterContainer  max-w-[75%] rounded-3xl  h-[600px] flex justify-between p-20'>
+      <div className='newsLetterContainer  max-w-[75%] rounded-3xl   flex flex-col xl:flex-row xl:h-[600px] justify-between p-20'>
 
         <div className='flex flex-col justify-center'> 
-          <h6 className='text-5xl font-semibold mb-5'>Dont miss out on special offers</h6>
-          <p className='text-gray-500 mb-8 text-lg'>Register to receive news about the latest, savings combos, discount codes...</p>
+          <h6 className='text-4xl w-[70%] 2xl:text-5xl 2xl:w-full font-semibold mb-5'>Dont miss out on special offers</h6>
+          <p className='text-gray-500 w-[70%] mb-8 text-lg'>Register to receive news about the latest, savings combos, discount codes...</p>
 
           <section className='flex flex-col gap-2 mb-10'>            
 
@@ -44,7 +44,7 @@ const NewsLetter = () => {
         </div>
 
         
-        <Image width={500} height={500} alt='Newsletter image' src={newsLetterImg} className=' h-[150%] top-[-140px]  right-[-10%] w-auto relative' />
+        <Image width={500} height={500} alt='Newsletter image' src={newsLetterImg} className=' lg:h-[100%] right-[-10%] 2xl:h-[150%] 2xl:top-[-140px] w-auto lg:relative' />
 
       </div>
 

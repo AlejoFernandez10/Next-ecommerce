@@ -13,7 +13,7 @@ async function init(){
     products = await db.collection('prods')
 
   }catch(error){
-    throw new Error('Fail to establich connection to the database')
+    throw new Error('Fail to establish connection to the database')
   }
 }
 

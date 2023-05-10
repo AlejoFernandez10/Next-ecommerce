@@ -13,13 +13,13 @@ const CollectionCard = ({title, prodsQty, img}) => {
     <Link href={'/'} className='collectionCard  max-h-[440px] max-w-[440px] p-5 px-7 flex flex-col bg-white rounded-3xl transition-all duration-200  hover:shadow-xl'>
 
 
-      <div className='flex justify-between pb-14 pt-5 '>
+      <div className='flex  justify-between pb-14 pt-5 '>
 
         
         <p className='text-sm text-gray-600 font-semibold'>{prodsQty} products </p>
       </div>
 
-      <div className='mb-20 flex justify-between '>
+      <div className='mb-10  flex flex-col items-center gap-5 md:gap-0 md:mb-20 md:flex-row justify-between '>
 
         <div className=''>
 
@@ -28,7 +28,7 @@ const CollectionCard = ({title, prodsQty, img}) => {
         </div>
 
         <div className='bg-[#F3F4F6]    rounded-3xl'>
-          <Image width={500} height={500} alt={title} src={img}  className='w-auto h-auto max-h-[150px]'/>
+          <Image width={500} height={500} alt={title} src={img} priority className='w-auto h-auto max-h-[150px]'/>
         </div>
 
       </div>

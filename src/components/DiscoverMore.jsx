@@ -10,6 +10,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Link from 'next/link';
 import NewArrivals from './NewArrivals';
+import {AiOutlineArrowLeft} from 'react-icons/ai'
+import {AiOutlineArrowRight} from 'react-icons/ai'
 
 
 const DiscoverMore = ({data} ) => {
@@ -55,10 +57,10 @@ const DiscoverMore = ({data} ) => {
 
     <div className='m-auto w-full z-0 relative max-w-[1300px] '>
 
-    <Swiper className='  flex z-50 absolute  '
+    <Swiper className='  flex z-50 relative  '
       modules={[Navigation, Scrollbar]}          
       slidesPerView={2}    
-      
+      navigation={{clickable:true, prevEl:'.swiper-button-prev', nextEl:'.swiper-button-next'}}
       scrollbar={{ draggable: true }}
       >
 
@@ -81,6 +83,23 @@ const DiscoverMore = ({data} ) => {
           </SwiperSlide>
         ))}
 
+            <div className='slider-controler '>
+
+            <div className=''>
+
+                  <AiOutlineArrowLeft  className='slider-arrow swiper-button-prev p-1.5 z-40' />
+            </div>
+
+            <div className=' mr-5'>
+                  <AiOutlineArrowRight className='slider-arrow swiper-button-next  p-1.5  z-40' />
+
+            </div>
+
+            <div className='swiper-pagination'>
+
+            </div>
+
+            </div> 
     </Swiper>
     </div>
 

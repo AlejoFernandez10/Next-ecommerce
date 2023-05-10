@@ -27,7 +27,7 @@ const ProductCard = ({img, price, name, desc, reviews, stars, category}) => {
 
       {/* CARD IMAGE */}
 
-      <div className='bg-gray-100 h-full w-full rounded-3xl relative z-10'>
+      <div className='bg-gray-100 h-full w-full rounded-3xl relative'>
         
         <Link href={'#'} id='cardImages' className=' h-auto w-auto'  >
 
@@ -48,8 +48,8 @@ const ProductCard = ({img, price, name, desc, reviews, stars, category}) => {
           </div>
         </Link>
 
-         <AiOutlineHeart className={`text-2xl z-[70] absolute top-4 right-4 cursor-pointer ${liked ? 'hidden' : 'inline'} bg-white rounded-full `} onClick={()=> setLiked(true)}/>
-         <AiTwotoneHeart className={`text-2xl z-[70] absolute top-4 right-4 cursor-pointer text-red-600 ${liked ? 'inline' : 'hidden'}  bg-white rounded-full`} onClick={()=> setLiked(false)}/> 
+         <AiOutlineHeart className={`text-2xl z-[10] absolute top-4 right-4 cursor-pointer ${liked ? 'hidden' : 'inline'} bg-white rounded-full `} onClick={()=> setLiked(true)}/>
+         <AiTwotoneHeart className={`text-2xl z-[10] absolute top-4 right-4 cursor-pointer text-red-600 ${liked ? 'inline' : 'hidden'}  bg-white rounded-full`} onClick={()=> setLiked(false)}/> 
       </div>
 
 
