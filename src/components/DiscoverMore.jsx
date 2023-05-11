@@ -57,7 +57,7 @@ const DiscoverMore = ({data} ) => {
 
     <div className='m-auto w-full z-0 relative max-w-[1300px] '>
 
-    <Swiper className='  flex z-50 relative  '
+    <Swiper className='  flex z-50 relative w-full  '
       modules={[Navigation, Scrollbar]}          
       slidesPerView={2}    
       navigation={{clickable:true, prevEl:'.swiper-button-prev', nextEl:'.swiper-button-next'}}

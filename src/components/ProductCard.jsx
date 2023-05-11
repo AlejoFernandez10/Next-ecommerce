@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Image from 'next/image'
 
 import {AiOutlineHeart} from 'react-icons/ai'
 import {AiTwotoneHeart} from 'react-icons/ai'
 import Link from 'next/link'
+import { Context, FavContext } from '@/context/CartContext'
 
 
-
-const ProductCard = ({img, price, name, desc, reviews, stars, category}) => {
+const ProductCard = ({id,img, price, name, desc, reviews, stars, category}) => {
 
 
   const [liked, setLiked] = useState(false)
+
+  const [cart, setCart] = useContext(Context)
+  const [favs, setFavs] = useContext(FavContext)
 
   const [color, setColor] = useState('')
 
@@ -24,6 +27,55 @@ const ProductCard = ({img, price, name, desc, reviews, stars, category}) => {
     'Xl'
   ]
 
+
+  const addToCart = ()=>{
+    setCart((currentItems)=>{
+
+      const isItem = currentItems.find((item)=> item.id === id)
+
+      if(isItem){
+        
+          currentItems.map((item)=>{
+            if(item.id === id){
+              return{
+                ...item,
+                qty:1
+              }
+            }
+          })
+        }else{
+          return[
+            {id,img, price, name, desc, reviews, stars,qty:1 ,category},
+            ...currentItems
+          ]
+        }
+    })
+  }
+
+  const addToFav = ()=>{
+    setFavs((currentItems)=>{
+
+      const isItem = currentItems.find((item)=> item.id === id)
+
+      if(isItem){
+        
+          currentItems.map((item)=>{
+            if(item.id === id){
+              return{
+                ...item,
+                
+              }
+            }
+          })
+        }else{
+          return[
+            {id,img, price, name, desc, reviews, stars,category},
+            ...currentItems
+          ]
+        }
+    })
+  }
+
   return (
     <div  className='w-full   h-auto flex-col items-center max-w-[300px] max-h-[490px] '>
 
@@ -31,7 +83,7 @@ const ProductCard = ({img, price, name, desc, reviews, stars, category}) => {
 
       <div className='bg-gray-100 h-full w-full rounded-3xl relative'>
         
-        <Link href={'#'} id='cardImages' className=' h-auto w-auto'  >
+        <Link href={`/catalogue/${id}`} id='cardImages' className=' h-auto w-auto'  >
 
           <div>
 
@@ -42,7 +94,7 @@ const ProductCard = ({img, price, name, desc, reviews, stars, category}) => {
 
             {talles.map((talle)=>(
 
-              <button key={talle} onClick={((e )=> e.preventDefault()  & setActiveSize(talle))} className={`h-[40px] w-[80px]  shadow-lg rounded-xl flex items-center justify-center transition-all duration-200  hover:bg-gray-900 hover:text-white ${activeSize === talle ? 'bg-black text-white' : 'bg-white text-black'}`}>
+              <button key={talle} onClick={((e )=> e.preventDefault()  & setActiveSize(talle) & addToCart())} className={`h-[40px] w-[80px]  shadow-lg rounded-xl flex items-center justify-center transition-all duration-200  hover:bg-gray-900 hover:text-white ${activeSize === talle ? 'bg-black text-white' : 'bg-white text-black'}`}>
                   <p className='text-base font-semibold '>{talle}</p>
               </button>
 
@@ -50,7 +102,7 @@ const ProductCard = ({img, price, name, desc, reviews, stars, category}) => {
           </div>
         </Link>
 
-         <AiOutlineHeart className={`text-2xl z-[10] absolute top-4 right-4 cursor-pointer ${liked ? 'hidden' : 'inline'} bg-white rounded-full `} onClick={()=> setLiked(true)}/>
+         <AiOutlineHeart className={`text-2xl z-[10] absolute top-4 right-4 cursor-pointer ${liked ? 'hidden' : 'inline'} bg-white rounded-full `} onClick={()=> setLiked(true) & addToFav()}/>
          <AiTwotoneHeart className={`text-2xl z-[10] absolute top-4 right-4 cursor-pointer text-red-600 ${liked ? 'inline' : 'hidden'}  bg-white rounded-full`} onClick={()=> setLiked(false)}/> 
       </div>
 

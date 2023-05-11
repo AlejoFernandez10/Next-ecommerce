@@ -1,9 +1,9 @@
 import ProductCard from '@/components/ProductCard'
 import React from 'react'
 
-const DisplayProducts = ({data}) => {
+const DisplayProducts =  ({data}) => {
 
-
+  
 
   return (
     <div className='w-full flex flex-col  items-center '>      
@@ -16,6 +16,7 @@ const DisplayProducts = ({data}) => {
 
         <ProductCard
           key={item._id}
+          id={item._id}
           img={item.img}
           name={item.name}
           desc={item.desc}

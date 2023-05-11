@@ -3,7 +3,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import Footer from '@/components/Footer'
 
-const inter = Inter({ subsets: ['latin'] })
+import CartContext from '@/context/CartContext'
 
 export const metadata = {
   title: 'Create Next App',
@@ -15,9 +15,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body >
 
+      <CartContext>
+
         <Navbar />
         {children}
         <Footer />
+        
+      </CartContext>
       </body>
 
     </html>

@@ -1,9 +1,12 @@
 import React from 'react'
 
 import {BiUser} from 'react-icons/bi'
-import {AiOutlineShoppingCart} from 'react-icons/ai'
+
 import {AiOutlineHeart} from 'react-icons/ai'
 import Link from 'next/link'
+
+import Cart from './Cart'
+import OpenFavsMenu from './OpenFavsMenu'
 
 const Navbar = () => {
 
@@ -37,21 +40,11 @@ const Navbar = () => {
 
         <div className='flex gap-4 items-center'>
 
-        <div className='relative flex items-center'>
-            
-            <label htmlFor='cart ' className='absolute top-[-10px] right-[-10px] bg-teal-500 text-[13px] font-semibold text-white rounded-full max-h-[16px] px-1 flex items-center'>0 </label>
-            <AiOutlineHeart name='cart' className='text-[25px]' />
-            
-          </div>
+           <OpenFavsMenu /> 
           
           <BiUser  className='text-[25px]'/>
 
-          <div className='relative flex items-center'>
-            
-            <label htmlFor='cart ' className='absolute top-[-10px] right-[-10px] bg-teal-500 text-[13px] font-semibold text-white rounded-full max-h-[16px] px-1 flex items-center'>0 </label>
-            <AiOutlineShoppingCart name='cart' className='text-[25px]' />
-            
-          </div>
+          <Cart />
         </div>
 
       </nav>

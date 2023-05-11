@@ -8,7 +8,9 @@ import {BiSortAlt2 } from 'react-icons/bi'
 import Dropdown from './Dropdown'
 import DisplayProducts from './DisplayProducts'
 
-const Filters = ({data}) => {
+
+
+export default async function Filters ({data}){
 
  const categories = {
   title:'Categories',
@@ -43,7 +45,18 @@ const Filters = ({data}) => {
   ]
  }
 
-  return (
+  
+/* async function fetchData(){
+  
+  const {products} = await getProducts()
+  return products
+}
+
+const prods = await fetchData()
+
+const dataParsed = JSON.parse(JSON.stringify(prods))  */
+ 
+ return (
 
     <section className='flex w-full flex-col  justify-center items-center'>
     
@@ -94,5 +107,3 @@ const Filters = ({data}) => {
     </section>
   )
 }
-
-export default Filters
