@@ -152,7 +152,7 @@ const ProductCard = ({id,img, price, name, desc, reviews, stars, category, quant
 
           <div>
 
-          <Image width={400} height={400} alt={desc} src={img} className='h-auto m-auto min-h-[319px] max-h-[320px] object-cover z-10 scale-100 transition-all duration-200 hover:scale-110' />
+          <Image width={400} height={400} alt={desc} src={img} className='h-auto  m-auto min-h-[319px] max-h-[320px] object-cover z-10 scale-100 transition-all duration-200 hover:scale-110' />
           </div>
           
           <div className='talles absolute bottom-5  gap-2 justify-center w-[250px] right-5 items-center z-0 ' >

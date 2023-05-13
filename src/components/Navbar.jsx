@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <header className='w-full fixed flex justify-center items-center min-h-[8vh] z-[150] bg-gray-50  bg-opacity-95'>
 
-      <nav className='w-[95%] max-w-[1350px] flex justify-between px-4 '>
+      <nav className='w-[95%] max-w-[1300px] flex justify-between pr-1 '>
         
         <Link href={'/'} className='text-2xl'>LOGO</Link>
 

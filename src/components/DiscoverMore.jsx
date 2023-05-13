@@ -49,10 +49,43 @@ const DiscoverMore = ({data} ) => {
 
     <section className='min-h-[50vh] w-full  flex flex-col pb-20 z-0 justify-center items-center overflow-hidden' >
 
-      <div className='m-auto w-full  max-w-[1300px]'>
+      <div className='m-auto w-full   max-w-[1300px]'>
 
-        <h2 className='text-4xl  font-semibold pt-28 pb-16'>Discover More. <span className='text-gray-400'>Good things are waiting for you</span> </h2>
+        
 
+        
+        <section className='text-4xl relative w-full  font-semibold pt-28 pb-10 '>
+          
+          Discover More.
+
+        <span className='text-gray-400'>Good things are waiting for you</span> 
+        
+
+        {/* SLIDER CONTROLS */}
+        <div className='slider-controler absolute  right-0'>
+
+            <div className='mr-[110px]'>
+
+                  <AiOutlineArrowLeft  className='slider-arrow swiper-button-prev p-1.5 z-40 bg-gray-100 ' />
+            </div>
+
+            <div className='  '>
+                  <AiOutlineArrowRight className='slider-arrow swiper-button-next  p-1.5  z-40 bg-gray-100 ' />
+
+            </div>
+
+            <div className='swiper-pagination'>
+
+            </div>
+
+            </div> 
+        </section>
+        
+
+       
+
+        
+        
       </div>
 
     <div className='m-auto w-full z-0 relative max-w-[1300px] '>
@@ -83,23 +116,7 @@ const DiscoverMore = ({data} ) => {
           </SwiperSlide>
         ))}
 
-            <div className='slider-controler '>
-
-            <div className=''>
-
-                  <AiOutlineArrowLeft  className='slider-arrow swiper-button-prev p-1.5 z-40' />
-            </div>
-
-            <div className=' mr-5'>
-                  <AiOutlineArrowRight className='slider-arrow swiper-button-next  p-1.5  z-40' />
-
-            </div>
-
-            <div className='swiper-pagination'>
-
-            </div>
-
-            </div> 
+            
     </Swiper>
     </div>
 
