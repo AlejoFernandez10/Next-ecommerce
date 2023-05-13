@@ -5,9 +5,9 @@ import {AiOutlineHeart} from 'react-icons/ai'
 import {AiTwotoneHeart} from 'react-icons/ai'
 import Link from 'next/link'
 import { Context, FavContext } from '@/context/CartContext'
-
-
-const ProductCard = ({id,img, price, name, desc, reviews, stars, category}) => {
+import {toast, ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+const ProductCard = ({id,img, price, name, desc, reviews, stars, category, quantity}) => {
 
 
   const [liked, setLiked] = useState(false)
@@ -19,6 +19,10 @@ const ProductCard = ({id,img, price, name, desc, reviews, stars, category}) => {
 
   const [activeSize, setActiveSize] = useState('')
 
+  const [count , setCount ] = useState(()=>{
+    return quantity > 0 ? quantity : 1
+  });
+
   const talles = [
     'Xs',
     'S',
@@ -29,30 +33,57 @@ const ProductCard = ({id,img, price, name, desc, reviews, stars, category}) => {
 
 
   const addToCart = ()=>{
-    setCart((currentItems)=>{
 
-      const isItem = currentItems.find((item)=> item.id === id)
+    setCart((currentItems) => {
+      const isItem = currentItems.find((item) => item.id === id);
+  
+      if (isItem) {
 
-      if(isItem){
-        
-          currentItems.map((item)=>{
-            if(item.id === id){
-              return{
-                ...item,
-                qty:1
-              }
-            }
-          })
-        }else{
-          return[
-            {id,img, price, name, desc, reviews, stars,qty:1 ,category},
-            ...currentItems
-          ]
-        }
-    })
+        return currentItems.map((item) => {
+
+          if (item.id === id) {
+            return {
+              ...item,
+              qty: item.qty + count,
+              size: activeSize
+            };
+          }
+          return item; 
+        });
+      } else {
+        return [
+          {
+            id,
+            img,
+            price,
+            name,
+            desc,
+            reviews,
+            stars,
+            qty: count,
+            category,
+            size: activeSize
+          },
+          ...currentItems,
+        ];
+      }
+    });
+
+    toast.success('Added to cart!', {
+      position: "bottom-right",
+      autoClose: 1400,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      
+      });
   }
 
   const addToFav = ()=>{
+
     setFavs((currentItems)=>{
 
       const isItem = currentItems.find((item)=> item.id === id)
@@ -66,6 +97,7 @@ const ProductCard = ({id,img, price, name, desc, reviews, stars, category}) => {
                 
               }
             }
+            
           })
         }else{
           return[
@@ -74,7 +106,40 @@ const ProductCard = ({id,img, price, name, desc, reviews, stars, category}) => {
           ]
         }
     })
+
+    toast.success('Check your favs!', {
+      position: "bottom-right",
+      autoClose: 1400,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      
+      });
   }
+
+
+  const removeFav = (id)=>{
+    const newFavs = favs.filter((fav)=> fav.id !== id )
+
+    setFavs(newFavs)
+
+    toast.error('Item removed from favs!', {
+      position: "bottom-right",
+      autoClose: 1400,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      
+      });
+  }
+
+  
 
   return (
     <div  className='w-full   h-auto flex-col items-center max-w-[300px] max-h-[490px] '>
@@ -103,7 +168,7 @@ const ProductCard = ({id,img, price, name, desc, reviews, stars, category}) => {
         </Link>
 
          <AiOutlineHeart className={`text-2xl z-[10] absolute top-4 right-4 cursor-pointer ${liked ? 'hidden' : 'inline'} bg-white rounded-full `} onClick={()=> setLiked(true) & addToFav()}/>
-         <AiTwotoneHeart className={`text-2xl z-[10] absolute top-4 right-4 cursor-pointer text-red-600 ${liked ? 'inline' : 'hidden'}  bg-white rounded-full`} onClick={()=> setLiked(false)}/> 
+         <AiTwotoneHeart className={`text-2xl z-[10] absolute top-4 right-4 cursor-pointer text-red-600 ${liked ? 'inline' : 'hidden'}  bg-white rounded-full`} onClick={()=> setLiked(false) & removeFav(id)}/> 
       </div>
 
 
@@ -157,6 +222,8 @@ const ProductCard = ({id,img, price, name, desc, reviews, stars, category}) => {
         </div>
 
       </Link>
+
+      
     </div>
   )
 }

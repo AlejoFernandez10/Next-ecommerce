@@ -1,5 +1,7 @@
+'use client'
 import ProductCard from '@/components/ProductCard'
 import React from 'react'
+import { ToastContainer } from 'react-toastify'
 
 const DisplayProducts =  ({data}) => {
 
@@ -30,6 +32,19 @@ const DisplayProducts =  ({data}) => {
 
       </div>
        <button className=' mt-16 mb-10 bg-gray-900 text-white max-w-[200px] text-lg py-3.5  rounded-2xl font-semibold  flex items-center gap-3 px-7 justify-center transition-all duration-200 hover:opacity-90'>Show all  </button> 
+    
+       <ToastContainer 
+          position="bottom-right"
+          autoClose={1400}                  
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
     </div>
   )
 }

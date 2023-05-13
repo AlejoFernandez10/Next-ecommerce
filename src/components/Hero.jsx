@@ -22,9 +22,9 @@ import {AiOutlineArrowRight} from 'react-icons/ai'
 const Hero = () => {
   return (
 
-    <section className='min-h-[90vh]  bg-[#E3FFE6] w-full flex items-start justify-center'>
+    <section className='min-h-[96vh]  bg-[#E3FFE6] w-full flex items-start justify-center'>
 
-    <Swiper className=' mt-[12vh] lg:mt-[10vh]  m-auto   min-h-[85vh] '
+    <Swiper className=' mt-[12vh] lg:mt-[10vh]  m-auto   min-h-[86vh] '
     modules={[Navigation, Pagination, Scrollbar, Autoplay]}
     loop={true}
     autoplay={true}

@@ -1,5 +1,6 @@
 import DiscoverMore from "@/components/DiscoverMore"
 import Hero from "@/components/Hero"
+import NewArrivals from "@/components/NewArrivals"
 import StartExploring from "@/components/StartExploring"
 import NewsLetter from "@/components/collections/NewsLetter"
 import { getProducts } from "@/lib/productsFetch"
@@ -30,6 +31,8 @@ export default async function Home() {
         <StartExploring  />
 
       </div>
+
+      <NewArrivals newArrivals={dataParsed} />
 
       <NewsLetter />
     </main>

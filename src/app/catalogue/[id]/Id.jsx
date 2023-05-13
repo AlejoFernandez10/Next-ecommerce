@@ -97,7 +97,7 @@ const Id = ({img, desc, price, name, stars, reviews, category}) => {
                 />
 
                 <span
-                  className={`group inline-block rounded-xl border px-5 py-1 text-[17px] font-medium ${ sizeColor === 'Black' ? 'bg-[#0EA5E9] text-white' : ''}`}
+                  className={`group inline-block rounded-xl border px-5 py-1 text-[17px] font-medium ${ sizeColor === 'Black' ? 'bg-[#0b94b6] text-white' : ''}`}
                 >
                   Black
                 </span>
@@ -113,7 +113,7 @@ const Id = ({img, desc, price, name, stars, reviews, category}) => {
                 />
 
                 <span
-                  className={`group inline-block rounded-xl border px-5 py-1 text-[17px] font-medium ${ sizeColor === 'Green' ? 'peer-checked:bg-[#0EA5E9] peer-checked:text-white' : ''}`}
+                  className={`group inline-block rounded-xl border px-5 py-1 text-[17px] font-medium ${ sizeColor === 'Green' ? 'peer-checked:bg-[#0b94b6] peer-checked:text-white' : ''}`}
                 >
                   Green
                 </span>
@@ -129,7 +129,7 @@ const Id = ({img, desc, price, name, stars, reviews, category}) => {
                 />
 
                 <span
-                  className={`group inline-block rounded-xl border px-5 py-1 text-[17px] font-medium ${ sizeColor === 'Blue' ? 'peer-checked:bg-[#0EA5E9] peer-checked:text-white' : ''}`}
+                  className={`group inline-block rounded-xl border px-5 py-1 text-[17px] font-medium ${ sizeColor === 'Blue' ? 'peer-checked:bg-[#0b94b6] peer-checked:text-white' : ''}`}
                 >
                   Blue
                 </span>
@@ -156,7 +156,7 @@ const Id = ({img, desc, price, name, stars, reviews, category}) => {
                 />
 
                 <span
-                  className={`group inline-flex h-12 w-12 items-center justify-center rounded-lg border text-base font-medium ${ sizeActive === size ? 'bg-[#0EA5E9] text-white' : ''}`}
+                  className={`group inline-flex h-12 w-12 items-center justify-center rounded-lg border text-base font-medium ${ sizeActive === size ? 'bg-[#0b94b6] text-white' : ''}`}
                 >
                   {size}
                 </span>
@@ -171,7 +171,7 @@ const Id = ({img, desc, price, name, stars, reviews, category}) => {
 
             <div className='bg-gray-100 w-full max-w-[140px] h-[60px] flex rounded-full px-4 items-center justify-between'>
 
-                <button className='text-xl font-semibold bg-white text-gray-500 px-3 pb-1 flex items-center justify-center rounded-full  text-center border-[1px] border-gray-500 '>-</button>  
+                <button onClick={((e) => e.preventDefault())} className='text-xl font-semibold bg-white text-gray-500 px-3 pb-1 flex items-center justify-center rounded-full  text-center border-[1px] border-gray-500 '>-</button>  
 
               <label htmlFor="quantity" className="sr-only">Qty</label>
 
@@ -183,12 +183,12 @@ const Id = ({img, desc, price, name, stars, reviews, category}) => {
                 className="w-12 rounded bg-transparent border-none  py-3 text-center text-lg [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
               />
 
-              <button className='text-xl font-semibold bg-white text-gray-500 px-2 pb-0.5 flex items-center justify-center rounded-full text-center border-[1px] border-gray-500 '>+</button> 
+              <button onClick={((e) => e.preventDefault())} className='text-xl font-semibold bg-white text-gray-500 px-2 pb-0.5 flex items-center justify-center rounded-full text-center border-[1px] border-gray-500 '>+</button> 
 
             </div>
 
             <button
-              type="submit"
+              
               className="block rounded-full bg-black w-[50%] px-5 py-3 text-base sm:text-lg font-medium text-white hover:opacity-90"
             >
               Add to Cart

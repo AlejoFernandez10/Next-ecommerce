@@ -4,6 +4,7 @@ import WomenCollection from './WomenCollection'
 import SportsCollection from './SportsCollection'
 
 
+
 const Collections = ({ btnActive}) => {
 
    
@@ -26,6 +27,8 @@ const Collections = ({ btnActive}) => {
           <SportsCollection />
 
         }
+
+    
     </section>
   )
 }

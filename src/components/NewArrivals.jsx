@@ -4,11 +4,12 @@
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation,Scrollbar } from 'swiper';
-
+import { ToastContainer} from 'react-toastify'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import ProductCard from './ProductCard';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NewArrivals = ({newArrivals}) => {
 
@@ -46,6 +47,18 @@ const NewArrivals = ({newArrivals}) => {
 
       </Swiper>
 
+      <ToastContainer 
+          position="bottom-right"
+          autoClose={1400}                  
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
     </div>
   )
 }

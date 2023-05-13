@@ -1,33 +1,46 @@
 'use client'
 
-import React, { useState } from 'react'
-import FavsMenu from './FavsMenu'
+import React, { useState, useContext, useEffect } from 'react'
+import { FavContext } from '@/context/CartContext'
 import {AiOutlineHeart} from 'react-icons/ai'
+import FavsModal from './FavsModal'
 const OpenFavsMenu = () => {
 
-  const [open, setOpen] = useState(true)
+  const [favs, setfavs] = useContext(FavContext)
+  const [open, setOpen] = useState(false)
+  const [totalFavs, setTotalFavs] = useState(0)
 
-    const openNotisMenu = ()=>{
+    const openFavsMenu = ()=>{
       if(open === false){
         setOpen(true)
       }
       setTimeout(()=>{
         setOpen(false)
       },100)
-    }
+    } 
+
+    
+     useEffect(()=>{
+
+      if(favs){         
+        
+        setTotalFavs(favs.length)
+      }
+    }, [favs])
+
 
 
   return (
     <div>
 
-    <button className='relative flex items-center' onClick={()=> openNotisMenu()}>
+    <button className='relative flex items-center' onClick={()=> openFavsMenu()}>
             
-            <label htmlFor='fav ' className='absolute top-[-10px] right-[-10px] bg-teal-500 text-[13px] font-semibold text-white rounded-full max-h-[16px] px-1 flex items-center'>0 </label>
+            <label htmlFor='fav ' className='absolute top-[-10px] right-[-10px] bg-teal-500 text-[13px] font-semibold text-white rounded-full max-h-[16px] px-1 flex items-center'> {totalFavs} </label>
             <AiOutlineHeart name='fav' className='text-[25px]' />
             
     </button>
 
-    <FavsMenu state={open} />
+    <FavsModal state={open} />
     </div>
   )
 }

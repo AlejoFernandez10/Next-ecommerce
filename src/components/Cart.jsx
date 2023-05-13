@@ -6,22 +6,50 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import {AiOutlineShoppingCart} from 'react-icons/ai'
 import { Context } from '@/context/CartContext'
 import Image from 'next/image'
-import ProductCard from './ProductCard'
+import { toast } from 'react-toastify'
 
 const Cart = () =>{
 
   const [open, setOpen] = useState(false)
   const [cart, setCart] = useContext(Context)
 
-  /* const cartQty = cart.reduce(acc, curr =>{
-    return
+  const cartQty = cart.reduce((acc, curr) =>{
+    return acc + curr.qty
   },0)
- */
+
+
+  let totalPrice = 0 ;
+
+  cart.forEach(item=>{
+    totalPrice += (item.price * item.qty)
+  })
+
+
+  
+  const removeItem = (id)=>{
+
+    const newItems = cart.filter((item)=> item.id !== id )
+
+    setCart(newItems)
+    toast.error('Item removed from cart!', {
+      position: "bottom-center",
+      autoClose: 1400,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      
+      });
+  }
+
+ 
   if(open === false){
     return(
       <button className='relative flex items-center z-[600]' onClick={()=> setOpen(true)}>
             
-      <label htmlFor='cart ' className='absolute top-[-10px] right-[-10px] bg-teal-500 text-[13px] font-semibold text-white rounded-full max-h-[16px] px-1 flex items-center'>0 </label>
+      <label htmlFor='cart ' className='absolute top-[-10px] right-[-10px] bg-teal-500 text-[13px] font-semibold text-white rounded-full max-h-[16px] px-1 flex items-center'> {cartQty} </label>
       <AiOutlineShoppingCart name='cart' className='text-[25px]'  />
 
   </button>
@@ -30,6 +58,7 @@ const Cart = () =>{
 
   else{
 
+   
     return (
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-[500]" onClose={setOpen}>
@@ -76,8 +105,15 @@ const Cart = () =>{
   
                         <div className="mt-8">
                           <div className="flow-root">
-                            <ul role="list" className="-my-6 divide-y divide-gray-200">
-                              {cart.map((product) => (
+                            <ul role="list" className="-my-6 divide-y divide-gray-200 flex flex-col">
+
+                              {cart.length === 0 ? <li className='text-black self-center text-2xl pt-28 font-semibold'>Cart is empty...</li>
+
+
+                              :
+                              
+                              
+                              cart.map((product) => (
                                 <li key={product.id} className="flex py-6">
                                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                     <Image
@@ -106,6 +142,7 @@ const Cart = () =>{
                                       <div className="flex">
                                         <button
                                           type="button"
+                                          onClick={()=>  removeItem(product.id) }
                                           className="font-medium text-indigo-600 hover:text-indigo-500"
                                         >
                                           Remove
@@ -114,7 +151,10 @@ const Cart = () =>{
                                     </div>
                                   </div>
                                 </li>
-                              ))}
+                              
+                              ))
+                              }
+
                             </ul>
                           </div>
                         </div>
@@ -123,7 +163,7 @@ const Cart = () =>{
                       <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <p>Subtotal</p>
-                          <p>$262.00</p>
+                          <p>${totalPrice}.00</p>
                         </div>
                         <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                         <div className="mt-6">

@@ -2,11 +2,12 @@ import React from 'react'
 
 import {BiUser} from 'react-icons/bi'
 
-import {AiOutlineHeart} from 'react-icons/ai'
+
 import Link from 'next/link'
 
 import Cart from './Cart'
 import OpenFavsMenu from './OpenFavsMenu'
+import FavsModal from './FavsModal'
 
 const Navbar = () => {
 
@@ -20,9 +21,9 @@ const Navbar = () => {
 
 
   return (
-    <header className='w-full flex justify-center items-center min-h-[8vh] z-[200] bg-gray-50 fixed bg-opacity-95'>
+    <header className='w-full fixed flex justify-center items-center min-h-[8vh] z-[150] bg-gray-50  bg-opacity-95'>
 
-      <nav className='w-[95%] max-w-[1350px] flex justify-between px-4'>
+      <nav className='w-[95%] max-w-[1350px] flex justify-between px-4 '>
         
         <Link href={'/'} className='text-2xl'>LOGO</Link>
 
@@ -38,10 +39,12 @@ const Navbar = () => {
          
         </ul>
 
-        <div className='flex gap-4 items-center'>
+        <div className='flex gap-4 items-center relative'>
 
-           <OpenFavsMenu /> 
+           <OpenFavsMenu  />
+
           
+
           <BiUser  className='text-[25px]'/>
 
           <Cart />

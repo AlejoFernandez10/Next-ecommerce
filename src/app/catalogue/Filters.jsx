@@ -46,16 +46,7 @@ export default async function Filters ({data}){
  }
 
   
-/* async function fetchData(){
-  
-  const {products} = await getProducts()
-  return products
-}
 
-const prods = await fetchData()
-
-const dataParsed = JSON.parse(JSON.stringify(prods))  */
- 
  return (
 
     <section className='flex w-full flex-col  justify-center items-center'>
