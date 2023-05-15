@@ -1,9 +1,10 @@
 import Navbar from '@/components/Navbar'
 import './globals.css'
-import { Inter } from 'next/font/google'
+
 import Footer from '@/components/Footer'
 
 import CartContext from '@/context/CartContext'
+import Provider from './SessionProvider'
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,15 +15,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body >
+      <Provider>
 
-      <CartContext>
+        <CartContext>
 
-        <Navbar />
-        {children}
-        <Footer />
-         
+          <Navbar />
+          {children}
+          <Footer />
           
-      </CartContext>
+            
+        </CartContext>
+      </Provider>
       </body>
 
     </html>

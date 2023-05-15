@@ -1,13 +1,14 @@
 import React from 'react'
 
-import {BiUser} from 'react-icons/bi'
 
 
 import Link from 'next/link'
 
 import Cart from './Cart'
 import OpenFavsMenu from './OpenFavsMenu'
-import FavsModal from './FavsModal'
+
+import UserDropdown from './UserDropdown'
+
 
 const Navbar = () => {
 
@@ -41,13 +42,15 @@ const Navbar = () => {
 
         <div className='flex gap-4 items-center relative'>
 
-           <OpenFavsMenu  />
 
           
 
-          <BiUser  className='text-[25px]'/>
+           <UserDropdown />
 
-          <Cart />
+           <OpenFavsMenu  />
+           
+           <Cart />
+        
         </div>
 
       </nav>
@@ -56,3 +59,6 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+
+

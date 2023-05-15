@@ -37,7 +37,7 @@ const Hero = () => {
 
       <SwiperSlide className='   flex m-0 justify-center'>
 
-        <div className='w-[90%] flex flex-col justify-between    items-center lg:flex-row lg:ml-10'>
+        <div className='w-[95%] flex flex-col justify-between    items-center lg:flex-row lg:ml-10'>
 
           <div className='ml-16  flex flex-col gap-4'>
             <span className='text-lg font-semibold '>In this season, find the best 🔥</span>
