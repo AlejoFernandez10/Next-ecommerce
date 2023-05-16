@@ -4,6 +4,12 @@
 import { useSession, signIn, signOut } from "next-auth/react"
 import React, {Fragment} from 'react'
 import {  Menu, Transition } from '@headlessui/react'
+import Image from "next/image"
+
+
+
+
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -21,12 +27,17 @@ const UserDropdown = () => {
       <Menu as="div" className="relative ml-3">
                     <div>
                       <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                        
                         <span className="sr-only">Open user menu</span>
-                        <img
+                        
+                        <Image
                           className="h-8 w-8 rounded-full"
+                          width={32}
+                          height={32}
                           src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                           alt=""
                         />
+
                       </Menu.Button>
                     </div>
                     <Transition
@@ -63,6 +74,7 @@ const UserDropdown = () => {
                           {({ active }) => (
                             <a
                               href="#"
+                              onClick={()=> signOut()}
                               className={classNames(active ? 'bg-gray-100 ' : '', 'block px-4 py-2 text-sm text-red-500 ')}
                             >
                               Sign out
@@ -71,11 +83,11 @@ const UserDropdown = () => {
                         </Menu.Item>
                       </Menu.Items>
                     </Transition>
-                  </Menu>
+        </Menu>
     )
   }else{
     return(
-      <button onClick={()=> signIn()}>Sign in </button>
+      <button onClick={()=> signIn()} className="px-4 py-2 text-sm bg-black text-white rounded-2xl"> Sign in </button>
     )
   }
 }

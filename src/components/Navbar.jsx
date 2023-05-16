@@ -40,17 +40,18 @@ const Navbar = () => {
          
         </ul>
 
-        <div className='flex gap-4 items-center relative'>
+        <div className='flex gap-6 items-center relative'>
 
 
           
 
-           <UserDropdown />
 
            <OpenFavsMenu  />
            
            <Cart />
         
+           <UserDropdown />
+           
         </div>
 
       </nav>
