@@ -35,3 +35,17 @@ export async function getProducts(){
     return {error: 'Failed to fetch products'}
   }
 }
+
+
+export async function getSingleProduct(name){
+  try{
+    if(!products) await init()
+    const result = await products
+    .find({name:`${name}`})
+    
+
+    return {products : result}
+  }catch(error){
+    return {error: 'Failed to fetch product'}
+  }
+}

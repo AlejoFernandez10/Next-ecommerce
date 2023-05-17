@@ -1,15 +1,29 @@
 'use client'
 import ProductDetails from '@/components/ProductDetails'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Image from 'next/image'
-const Id = ({img, desc, price, name, stars, reviews, category}) => {
+
+import {Context, FavContext } from '@/context/CartContext'
+import { useParams } from 'next/navigation';
+import { AiOutlineHeart, AiTwotoneHeart } from 'react-icons/ai';
+import { toast, ToastContainer } from 'react-toastify'
+
+
+const Id = ({data}) => {
+  
+  const [favs, setFavs] = useContext(FavContext)
+  const [cart, setCart] = useContext(Context)
+
+  const [qty, setQty] = useState(1)
 
   const [sizeColor, setColorActive] = useState('Black')
 
   const [sizeActive, setSizeActive] = useState('XS')
+  const [liked, setLiked] = useState(false)
 
+  const params = useParams()
 
-
+  
   const sizes = [
     'XS',
     'S',
@@ -17,19 +31,134 @@ const Id = ({img, desc, price, name, stars, reviews, category}) => {
     'M',
     'XL'
   ]
+  
+  
+  const singleItemData = data.filter((item)=> item._id === params.id)
+  
+  const { id, img, name, price, reviews, stars, category, desc } = singleItemData[0];
+  
+  
+  const addToFav = ()=>{
+
+    setFavs((currentItems)=>{
+
+      const isItem = currentItems.find((item)=> item.id === singleItemData[0].id)
+
+      if(isItem){
+        
+          currentItems.map((item)=>{
+            if(item.id === singleItemData[0].id){
+              return{
+                ...item,
+                
+              }
+            }
+            
+          })
+        }else{
+          return[
+            {id,img, price, name, desc, reviews, stars,category},
+            ...currentItems
+          ]
+        }
+    })
+
+    toast.success('Check your favs!', {
+      position: "bottom-right",
+      autoClose: 1400,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      
+      });
+  }
+
+  const addToCart = ()=>{
+
+    setCart((currentItems) => {
+      const isItem = currentItems.find((item) => item.id === id);
+  
+      if (isItem) {
+
+        return currentItems.map((item) => {
+
+          if (item.id === id) {
+            return {
+              ...item,
+              qty: item.qty + count,
+              size: activeSize
+            };
+          }
+          return item; 
+        });
+      } else {
+        return [
+          {
+            id,
+            img,
+            price,
+            name,
+            desc,
+            reviews,
+            stars,            
+            category,
+            qty:qty,
+            size: sizeActive
+          },
+          ...currentItems,
+        ];
+      }
+    });
+
+    toast.success('Added to cart!', {
+      position: "bottom-right",
+      autoClose: 1400,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      
+      });
+  }
+
+
+  const addQty = ()=>{
+    if(qty < 5){
+      setQty(qty + 1 )
+    }
+  }
+
+  const resQty = ()=>{
+    if(qty > 1){
+      setQty(qty - 1 )
+    }
+  }
 
   return (
     <section className='pt-20'>
   <div className="relative mx-auto max-w-screen-xl px-4 py-8">
     <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-2">
       <div className="grid grid-cols-2 gap-4 md:grid-cols-1">
+
+        <div className='relative'>
+
         <Image
           alt="Les Paul"
           width={1920}
           height={1080}
-          src="https://images.unsplash.com/photo-1456948927036-ad533e53865c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-          className="aspect-square h-auto w-auto rounded-xl object-cover bg-gray-100"
+          priority
+          src={singleItemData[0].img}
+          className="aspect-square h-full w-full rounded-xl object-cover bg-gray-100"
         />
+
+          <AiOutlineHeart className={`text-2xl z-[10] absolute top-4 right-4 cursor-pointer ${liked ? 'hidden' : 'inline'} bg-white rounded-full `} onClick={()=> setLiked(true) & addToFav()}/>
+         <AiTwotoneHeart className={`text-2xl z-[10] absolute top-4 right-4 cursor-pointer text-red-600 ${liked ? 'inline' : 'hidden'}  bg-white rounded-full`} onClick={()=> setLiked(false) & removeFav(id)}/> 
+        </div>
 
         
       </div>
@@ -44,13 +173,13 @@ const Id = ({img, desc, price, name, stars, reviews, category}) => {
         <div className="mt-8 flex justify-between">
           <div className="max-w-[50ch] space-y-2 flex-col">
             <h1 className="text-xl font-bold sm:text-2xl">
-              Fun Product That Does Something Cool
+              {singleItemData[0].name}
             </h1>
 
             
 
             <div  className='flex  p-3 px-2 cursor-pointer'>
-              <span className='text-green-500 rounded-lg  border-[2px] border-green-500 px-3 py-0.5 mr-7 font-semibold text-lg'>$120 </span>
+              <span className='text-green-500 rounded-lg  border-[2px] border-green-500 px-3 py-0.5 mr-7 font-semibold text-lg'>${singleItemData[0].price} </span>
 
 
               <div className='flex items-center gap-1 border-l-[2px] pl-5'>
@@ -68,9 +197,9 @@ const Id = ({img, desc, price, name, stars, reviews, category}) => {
 
                 <div className='flex  items-center gap-3'>
 
-                <span className='font-semibold'>4.6 </span>
+                <span className='font-semibold'>{singleItemData[0].stars} </span>
                   
-                <p className='text-xs underline'>(71 reviews)  </p>
+                <p className='text-xs underline'>({singleItemData[0].reviews} reviews)  </p>
                 </div>
               </div>
 
@@ -151,6 +280,7 @@ const Id = ({img, desc, price, name, stars, reviews, category}) => {
                   type="radio"
                   name="size"
                   id={size}
+
                   className="peer sr-only"
                   onClick={()=> setSizeActive(size)}
                 />
@@ -171,24 +301,25 @@ const Id = ({img, desc, price, name, stars, reviews, category}) => {
 
             <div className='bg-gray-100 w-full max-w-[140px] h-[60px] flex rounded-full px-4 items-center justify-between'>
 
-                <button onClick={((e) => e.preventDefault())} className='text-xl font-semibold bg-white text-gray-500 px-3 pb-1 flex items-center justify-center rounded-full  text-center border-[1px] border-gray-500 '>-</button>  
+                <button onClick={((e) => e.preventDefault() & resQty())} className='text-xl font-semibold bg-white text-gray-500 px-3 pb-1 flex items-center justify-center rounded-full  text-center border-[1px] border-gray-500 '>-</button>  
 
               <label htmlFor="quantity" className="sr-only">Qty</label>
 
               <input
                 type="number"
                 id="quantity"
-                min="1"
-                value="1"
+                min='1'
+                value={qty}
+                
                 className="w-12 rounded bg-transparent border-none  py-3 text-center text-lg [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
               />
 
-              <button onClick={((e) => e.preventDefault())} className='text-xl font-semibold bg-white text-gray-500 px-2 pb-0.5 flex items-center justify-center rounded-full text-center border-[1px] border-gray-500 '>+</button> 
+              <button onClick={((e) => e.preventDefault() & addQty())} className='text-xl font-semibold bg-white text-gray-500 px-2 pb-0.5 flex items-center justify-center rounded-full text-center border-[1px] border-gray-500 '>+</button> 
 
             </div>
 
             <button
-              
+              onClick={(e)=> e.preventDefault() &  addToCart()}
               className="block rounded-full bg-black w-[50%] px-5 py-3 text-base sm:text-lg font-medium text-white hover:opacity-90"
             >
               Add to Cart
@@ -200,6 +331,22 @@ const Id = ({img, desc, price, name, stars, reviews, category}) => {
       </div>
     </div>
   </div>
+
+
+
+  
+  <ToastContainer 
+          position="bottom-right"
+          autoClose={1400}                  
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
 </section>
   )
 }
