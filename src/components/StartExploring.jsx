@@ -6,7 +6,7 @@ import {BsGenderFemale} from 'react-icons/bs'
 
 import {CgGym} from 'react-icons/cg'
 import Collections from './collections/Collections'
-import { ToastContainer, toast } from 'react-toastify'
+
 
 const StartExploring = () => {
 

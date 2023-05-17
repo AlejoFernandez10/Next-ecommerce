@@ -133,7 +133,7 @@ const Cart = () =>{
                                           <a href={`/catalogue/${product.id}`}>{product.name}</a>
                                           <p className='text-xs mt-2 text-gray-500 w-[85%]'>{product.desc.slice(0,35)}... </p>
                                         </h3>
-                                        <p className="ml-4">${product.price}.00</p>
+                                        <p className="ml-4">${product.price * product.qty}.00</p>
                                       </div>
                                       <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                                     </div>

@@ -7,22 +7,27 @@ import {Context, FavContext } from '@/context/CartContext'
 import { useParams } from 'next/navigation';
 import { AiOutlineHeart, AiTwotoneHeart } from 'react-icons/ai';
 import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
+
 
 
 const Id = ({data}) => {
   
   const [favs, setFavs] = useContext(FavContext)
   const [cart, setCart] = useContext(Context)
-
+  
   const [qty, setQty] = useState(1)
-
+  
   const [sizeColor, setColorActive] = useState('Black')
-
+  
   const [sizeActive, setSizeActive] = useState('XS')
   const [liked, setLiked] = useState(false)
-
+  
   const params = useParams()
-
+  
   
   const sizes = [
     'XS',
@@ -31,6 +36,7 @@ const Id = ({data}) => {
     'M',
     'XL'
   ]
+  
   
   
   const singleItemData = data.filter((item)=> item._id === params.id)
@@ -76,6 +82,24 @@ const Id = ({data}) => {
       });
   }
 
+  const removeFav = (id)=>{
+    const newFavs = favs.filter((fav)=> fav.id !== id )
+
+    setFavs(newFavs)
+
+    toast.error('Item removed from favs!', {
+      position: "bottom-right",
+      autoClose: 1400,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      
+      });
+  }
+
   const addToCart = ()=>{
 
     setCart((currentItems) => {
@@ -88,8 +112,8 @@ const Id = ({data}) => {
           if (item.id === id) {
             return {
               ...item,
-              qty: item.qty + count,
-              size: activeSize
+              qty: item.qty + qty ,
+              size: sizeActive
             };
           }
           return item; 
@@ -157,7 +181,7 @@ const Id = ({data}) => {
         />
 
           <AiOutlineHeart className={`text-2xl z-[10] absolute top-4 right-4 cursor-pointer ${liked ? 'hidden' : 'inline'} bg-white rounded-full `} onClick={()=> setLiked(true) & addToFav()}/>
-         <AiTwotoneHeart className={`text-2xl z-[10] absolute top-4 right-4 cursor-pointer text-red-600 ${liked ? 'inline' : 'hidden'}  bg-white rounded-full`} onClick={()=> setLiked(false) & removeFav(id)}/> 
+         <AiTwotoneHeart className={`text-2xl z-[10] absolute top-4 right-4 cursor-pointer text-red-600 ${liked ? 'inline' : 'hidden'}  bg-white rounded-full`} onClick={()=> setLiked(false) & removeFav(singleItemData[0].id)}/> 
         </div>
 
         
@@ -310,7 +334,7 @@ const Id = ({data}) => {
                 id="quantity"
                 min='1'
                 value={qty}
-                
+                readOnly
                 className="w-12 rounded bg-transparent border-none  py-3 text-center text-lg [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
               />
 

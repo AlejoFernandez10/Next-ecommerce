@@ -1,5 +1,5 @@
 import React from 'react'
-import Id from './Id'
+import Id from '../../../components/Id'
 import { getProducts } from '@/lib/productsFetch'
 
 
